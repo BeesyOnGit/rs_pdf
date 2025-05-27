@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice #INV-2023-0456</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 15mm 20mm;
+            
+            /* @top-center {
+                content: "";
+                margin-top: 15mm;
+            }
+            
+            @bottom-center {
+                content: "";
+                margin-bottom: 15mm;
+            } */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.3;
+        }
+
+        body {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            font-size: 10pt;
+            color: #333;
+        }
+
+        .header {
+            height: 50mm;
+            padding: 5mm 0;
+            /* position: absolute; */
+            /* top: 0;
+            left: 0;
+            right: 0; */
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .company-info {
+            width: 60mm;
+        }
+
+        .invoice-meta {
+            width: 60mm;
+            text-align: right;
+        }
+
+        .main-content {
+            /* position: absolute; */
+            /* top: 50mm;
+            bottom: 30mm;
+            left: 0;
+            right: 0; */
+            padding: 5mm 0;
+            /* overflow: hidden; */
+        }
+
+        .footer {
+            /* position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0; */
+            height: 30mm;
+            padding: 5mm 0;
+            border-top: 1px solid #ddd;
+            font-size: 9pt;
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin: 2mm 0;
+        }
+
+        .items-table th,
+        .items-table td {
+            padding: 3mm;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            word-break: break-word;
+        }
+
+        .items-table th {
+            background: #2c3e50;
+            color: white;
+            font-weight: normal;
+        }
+
+        .total-row td {
+            padding-top: 5mm;
+            font-weight: bold;
+        }
+
+        .terms {
+            margin-top: 5mm;
+            padding: 3mm;
+            background: #f8f8f8;
+            border-radius: 2mm;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .header,
+            .footer {
+                /* position: fixed; */
+            }
+            
+            .main-content {
+                /* position: fixed; */
+                overflow: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-info">
+            <h2 style="margin:0 0 2mm 0; color: #2c3e50;">Tech Innovators Ltd</h2>
+            <p style="margin:0;">
+                123 Digital Avenue<br>
+                Silicon Valley, CA 94043<br>
+                Phone: (650) 123-4567<br>
+                VAT: US123456789
+            </p>
+        </div>
+        
+        <div class="invoice-meta">
+            <h2 style="margin:0 0 5mm 0; color: #2c3e50;">INVOICE</h2>
+            <p style="margin:0 0 2mm 0;">
+                <strong>Invoice #:</strong> INV-2023-0456<br>
+                <strong>Date:</strong> 2023-08-25<br>
+                <strong>Due Date:</strong> 2023-09-24
+            </p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div style="display: flex; margin-bottom: 5mm;">
+            <div style="flex:1">
+                <h3 style="margin:0 0 2mm 0;">Bill To:</h3>
+                <p style="margin:0;">
+                    Global Solutions Corp<br>
+                    Attn: Accounts Payable<br>
+                    456 Business Blvd<br>
+                    New York, NY 10001
+                </p>
+            </div>
+            
+            <div style="flex:1; text-align: right;">
+                <h3 style="margin:0 0 2mm 0;">Payment Details:</h3>
+                <p style="margin:0;">
+                    Bank: Silicon Valley Bank<br>
+                    Account: 123456789<br>
+                    SWIFT: SVBKUS6S<br>
+                    Routing: 021000089
+                </p>
+            </div>
+        </div>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th style="width: 50%">Description</th>
+                    <th style="width: 15%">Qty</th>
+                    <th style="width: 15%">Unit Price</th>
+                    <th style="width: 20%">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cloud Infrastructure Setup (AWS configuration, network setup)</td>
+                    <td>10.00</td>
+                    <td>$150.00</td>
+                    <td>$1,500.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Custom Software Development (React/Python stack)</td>
+                    <td>25.00</td>
+                    <td>$200.00</td>
+                    <td>$5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Technical Consulting (Senior Engineer rate)</td>
+                    <td>8.00</td>
+                    <td>$300.00</td>
+                    <td>$2,400.00</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right;">Subtotal:</td>
+                    <td>$8,900.00</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right;">Sales Tax (7.5%):</td>
+                    <td>$667.50</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right;">Total Due:</td>
+                    <td style="color: #2c3e50;">$9,567.50</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="terms">
+            <p style="margin:0;">
+                <strong>Payment Terms:</strong> Net 30 days from invoice date. Late payments subject to 1.5% monthly service charge.<br>
+                <strong>Wire Instructions:</strong> Please include invoice number with payment.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p style="margin:0; text-align: center;">
+            Tech Innovators Ltd ∙ Registered in Delaware ∙ EIN: 12-3456789<br>
+            contact@techinnovators.com ∙ www.techinnovators.com ∙ Tel: +1 (650) 123-4567
+        </p>
+        <p style="margin:3mm 0 0 0; text-align: center; font-size: 8pt; color: #666;">
+            This is an automatically generated invoice. No signature required.
+        </p>
+    </div>
+</body>
+</html>

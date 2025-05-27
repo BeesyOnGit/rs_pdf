@@ -1,0 +1,12 @@
+[package]
+name = "rs_pdf"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+base64 = "0.22.1"
+headless_chrome = {version = "1.0.17",features = ["fetch"]}
+
+# [dependencies.headless_chrome]
+# version          = "1.0.17"          # or whatever release you use
+# default-features = false  

@@ -1,6 +1,38 @@
-target
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
 Cargo.lock
-tst.html
-gpt.html
-build
-cr
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Chrome/Chromium binaries
+/cr/
+/chrome/
+chrome-linux/
+chrome-linux64/
+headless-shell/
+build/
+*.zip
+
+# Test files
+*.html
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+
+# Debug files
+flycheck*/

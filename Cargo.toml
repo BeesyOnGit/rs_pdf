@@ -1,12 +1,22 @@
 [package]
 name = "rs_pdf"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
+authors = ["BeesyOnGit"]
+description = "A high-performance Rust-based HTTP service for converting HTML to PDF using headless Chrome"
+license = "MIT"
+repository = "https://github.com/BeesyOnGit/rs_pdf"
+keywords = ["pdf", "html", "converter", "chrome", "headless"]
+categories = ["web-programming", "api-bindings"]
 
 [dependencies]
 axum = "0.8.4"
 base64 = "0.22.1"
-headless_chrome = {version = "1.0.17",features = ["fetch"]}
-serde = "1.0.219"
-tokio = {version = "1.45.1",features = ["full"]}
+headless_chrome = { version = "1.0.17", features = ["fetch"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.45.1", features = ["full"] }
+reqwest = { version = "0.12", features = ["blocking"] }
+zip = "0.6"
+tempfile = "3.0"
 

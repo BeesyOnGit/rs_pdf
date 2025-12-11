@@ -1,0 +1,19 @@
+{
+  "html": "<!DOCTYPE html><html><head><title>Example PDF</title><style>body { font-family: Arial, sans-serif; margin: 40px; } h1 { color: #333; }</style></head><body><h1>Hello from RS PDF!</h1><p>This is an example HTML document that will be converted to PDF.</p><p>You can include any HTML content here including images, tables, and styled content.</p></body></html>",
+  "pdf_options": {
+    "landscape": false,
+    "display_header_footer": true,
+    "print_background": true,
+    "scale": 1.0,
+    "paper_width": 210.0,
+    "paper_height": 297.0,
+    "margin_top": 15.0,
+    "margin_bottom": 15.0,
+    "margin_left": 12.5,
+    "margin_right": 12.5,
+    "header_template": "<div style='font-size:10px;text-align:center;width:100%;color:#555;'>My Custom Header</div>",
+    "footer_template": "<div style='font-size:10px;text-align:center;width:100%;color:#555;'>Page <span class='pageNumber'></span> of <span class='totalPages'></span></div>",
+    "prefer_css_page_size": false,
+    "show_page_numbers": true
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "html": "<!DOCTYPE html><html><head><title>No Page Numbers</title></head><body><h1>Document Without Page Numbers</h1><p>This PDF will not show page numbers in the footer.</p></body></html>",
+  "pdf_options": {
+    "show_page_numbers": false
+  }
+}

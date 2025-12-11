@@ -1,18 +1,24 @@
 mod utils;
 
 use axum::{Router, routing::post};
-use tokio;
 use utils::handler::handle_conversion;
 
-#[tokio::main()]
+#[tokio::main]
 async fn main() {
-    let app = Router::new().route("/convert", post(handle_conversion));
-    // .with_state(app_state);
+    // Create router with conversion endpoint
+    let app = Router::new()
+        .route("/convert", post(handle_conversion));
+
+    // Bind server to address
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:3005")
+        .await
+        .expect("Failed to bind to port 3005");
+
+    println!("Server listening on http://0.0.0.0:3005");
+    println!("POST /convert - Convert HTML to PDF");
 
     // Start server
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3005").await.unwrap();
-
-    // tracing::info!("Server running on {}", listener.local_addr().unwrap());
-    println!("server listenig on port 3005");
-    axum::serve(listener, app).await.unwrap();
+    axum::serve(listener, app)
+        .await
+        .expect("Server failed to start");
 }

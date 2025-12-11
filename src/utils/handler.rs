@@ -9,16 +9,18 @@ use base64::{Engine, engine::general_purpose::STANDARD};
 use super::utils::{ReqType, convert_to_pdf};
 
 pub async fn handle_conversion(Json(body): Json<ReqType>) -> impl IntoResponse {
-    // convert html to base64 dataUrl
+    // Convert HTML to base64 data URL
     let data_url = format!("data:text/html;base64,{}", STANDARD.encode(body.html));
 
-    let pdf = match convert_to_pdf(data_url) {
+    // Convert HTML to PDF with user-specified options
+    let pdf = match convert_to_pdf(data_url, body.pdf_options) {
         Ok(file) => file,
         Err(err) => {
+            eprintln!("PDF conversion error: {}", err);
             return Response::builder()
                 .status(StatusCode::INTERNAL_SERVER_ERROR)
                 .body(Body::from(format!(
-                    "error while converting to pdf : {}",
+                    "Error while converting to PDF: {}",
                     err
                 )))
                 .unwrap()
@@ -26,10 +28,10 @@ pub async fn handle_conversion(Json(body): Json<ReqType>) -> impl IntoResponse {
         }
     };
 
-    return Response::builder()
+    Response::builder()
         .status(StatusCode::OK)
         .header(header::CONTENT_TYPE, "application/pdf")
         .body(Body::from(pdf))
         .unwrap()
-        .into_response();
+        .into_response()
 }

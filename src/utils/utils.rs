@@ -7,7 +7,11 @@ use std::{
 };
 
 use headless_chrome::{types::PrintToPdfOptions, Browser, LaunchOptions};
+use once_cell::sync::OnceCell;
 use serde::{Deserialize, Serialize};
+
+// Global cache for Chrome path (initialized once)
+static CHROME_PATH: OnceCell<PathBuf> = OnceCell::new();
 
 pub fn convert_to_pdf(base_64: String, pdf_options: Option<PdfOptions>) -> Result<Vec<u8>, String> {
     // Get or download Chrome binary
@@ -42,7 +46,8 @@ pub fn convert_to_pdf(base_64: String, pdf_options: Option<PdfOptions>) -> Resul
         .map_err(|err| format!("Navigation timeout: {}", err))?;
 
     // Build print options from user input or use defaults
-    let print_options = pdf_options.unwrap_or_default().to_print_options();
+    let options = pdf_options.unwrap_or_default();
+    let print_options = options.to_print_options();
 
     // Generate PDF
     let pdf_data = tab
@@ -70,8 +75,24 @@ fn mm_to_inches(mm: f64) -> f64 {
     mm / 25.4
 }
 
-/// Get Chrome binary path or download if not found
+/// Get Chrome binary path or download if not found (cached after first call)
 fn get_or_download_chrome() -> Result<PathBuf, String> {
+    // Return cached path if already initialized
+    if let Some(path) = CHROME_PATH.get() {
+        return Ok(path.clone());
+    }
+
+    // Initialize the path
+    let path = initialize_chrome_path()?;
+
+    // Cache it for future calls
+    CHROME_PATH.set(path.clone()).ok();
+
+    Ok(path)
+}
+
+/// Initialize Chrome path (only called once)
+fn initialize_chrome_path() -> Result<PathBuf, String> {
     // Check environment variable first
     if let Ok(chrome_path) = env::var("CHROME_PATH") {
         let path = PathBuf::from(&chrome_path);
@@ -81,11 +102,36 @@ fn get_or_download_chrome() -> Result<PathBuf, String> {
         }
     }
 
-    // Check default location
-    let default_path = PathBuf::from("/home/rs_pdf/chrome/chrome");
-    if default_path.exists() {
-        println!("Using Chrome from default location");
-        return Ok(default_path);
+    // Get current binary directory
+    let current_exe = env::current_exe().ok();
+    let current_dir = current_exe.as_ref().and_then(|p| p.parent());
+
+    // Check default locations
+    let mut default_locations = vec![
+        // Standard Linux Chromium install locations
+        PathBuf::from("/usr/bin/chromium-browser"),
+        PathBuf::from("/usr/bin/chromium"),
+        PathBuf::from("/usr/bin/google-chrome"),
+        PathBuf::from("/usr/bin/google-chrome-stable"),
+        PathBuf::from("/snap/bin/chromium"),
+    ];
+
+    // Add current binary directory locations
+    if let Some(dir) = current_dir {
+        default_locations.push(dir.join("chrome"));
+        default_locations.push(dir.join("chromium"));
+        default_locations.push(dir.join("chrome-linux64/chrome"));
+    }
+
+    // Add downloaded Chrome locations
+    default_locations.push(PathBuf::from("/home/rs_pdf/chrome/chrome-linux64/chrome"));
+    default_locations.push(PathBuf::from("/home/rs_pdf/chrome/chrome"));
+
+    for default_path in default_locations {
+        if default_path.exists() {
+            println!("Using Chrome from: {}", default_path.display());
+            return Ok(default_path);
+        }
     }
 
     // Download Chrome if not found
@@ -270,6 +316,13 @@ impl Default for PdfOptions {
 
 impl PdfOptions {
     pub fn to_print_options(&self) -> PrintToPdfOptions {
+        // Determine header template - always provide empty div to override Chrome defaults
+        let header = if self.header_template.is_empty() {
+            Some(String::from("<div></div>"))
+        } else {
+            Some(self.header_template.clone())
+        };
+
         // Determine footer template based on show_page_numbers
         let footer = if self.footer_template.is_empty() {
             if self.show_page_numbers {
@@ -299,11 +352,7 @@ impl PdfOptions {
                 Some(self.page_ranges.clone())
             },
             ignore_invalid_page_ranges: Some(false),
-            header_template: if self.header_template.is_empty() {
-                None
-            } else {
-                Some(self.header_template.clone())
-            },
+            header_template: header,
             footer_template: footer,
             prefer_css_page_size: Some(self.prefer_css_page_size),
             transfer_mode: None,
